@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "tslint:latest",
+    "tslint-react"
+  ],
+  "rules": {
+    // override tslint-react rules here
+    "jsx-wrap-multiline": false,
+    "quotemark": [
+      true,
+      "single",
+      "jsx-double"
+    ],
+    "trailing-comma": true,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "no-submodule-imports": false,
+    "member-access": false,
+    "interface-name": false,
+    "semicolon": false,
+    "array-type": [
+      true,
+      "array"
+    ],
+    "no-implicit-dependencies": [
+      true,
+      "dev"
+    ]
+  }
+}
