@@ -5,13 +5,18 @@
   "dependencies": {
     "@types/react": "^16.7.18",
     "@types/react-dom": "^16.0.11",
+    "@types/react-redux": "^6.0.11",
+    "@types/redux": "^3.6.0",
     "@types/styled-components": "^4.1.4",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
+    "immutability-helper": "^2.9.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-redux": "^6.0.0",
     "react-scripts": "2.1.2",
     "react-test-renderer": "^16.7.0",
+    "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
     "styled-components": "^4.1.3",
     "typescript": "^3.2.2"
