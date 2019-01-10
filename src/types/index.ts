@@ -1,7 +1,20 @@
 import { Action, Reducer } from 'redux';
 
-export interface GIPHYListType {
+interface GIPHYPropType {
+	url: string;
+	mp4?: string;
+}
 
+export interface GIPHYImagesType {
+	downsized_small: GIPHYPropType;
+	original: GIPHYPropType;
+}
+
+export interface GIPHYImageType {
+	id: string;
+	slug: string;
+	title: string;
+	images: GIPHYImagesType;
 }
 
 export interface ActionType extends Action {
