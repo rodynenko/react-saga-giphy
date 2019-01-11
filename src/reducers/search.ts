@@ -1,13 +1,13 @@
 import update from 'immutability-helper';
 import createReducer from '../utils/createReducer';
 import { ActionTypes, StatusTypes } from '../store/constants';
-import { GIPHYListType, ActionHandlersType } from '../types';
+import { GIPHYImageType, ActionHandlersType } from '../types';
 
 export interface SearchType {
 	isFetching: boolean;
 	currentSearch: string;
 	results: {
-		[key: string]: GIPHYListType
+		[key: string]: GIPHYImageType[]
 	}
 };
 
