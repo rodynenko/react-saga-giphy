@@ -9,13 +9,19 @@ export const FormWrap = styled.div`
 
 export const FormGroup = styled.div`
 	position: relative;
-	margin-bottom: 20px;
 `;
 
-export const FormLabel = styled.label``;
+export const FormLabel = styled.label`
+	display: block;
+	font-size: 12px;
+	font-weight: 300;
+`;
 
 export const FormControl = styled.input`
 	position: relative;
+	display: block;
+	width: 100%;
+	padding: 2px 5px;
 `;
 
 export const FormError = styled.span`
