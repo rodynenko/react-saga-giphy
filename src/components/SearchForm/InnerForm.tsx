@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Field, FormikProps } from 'formik';
+import styled from 'styled-components';
 import InputField from '../InputField';
 import { Button } from '../../styles/button';
 import { FormWrap } from '../../styles/form';
@@ -7,6 +8,10 @@ import { FormWrap } from '../../styles/form';
 export interface Values {
 	search: string;
 }
+
+const ButtonWithMargin = styled(Button)`
+	margin-left: 15px;
+`;
 
 const InnerForm: React.SFC<FormikProps<Values>> = (props) => {
 	const { isSubmitting } = props;
@@ -18,8 +23,8 @@ const InnerForm: React.SFC<FormikProps<Values>> = (props) => {
 		 		label="Search gif by name"
 				component={InputField}
 			/>
-			<Button isDisabled={isSubmitting} type="submit">Search</Button>
-			<Button isDisabled={!isSubmitting} type="button">Stop</Button>
+			<ButtonWithMargin isDisabled={isSubmitting} type="submit">Search</ButtonWithMargin>
+			<ButtonWithMargin isDisabled={!isSubmitting} type="button">Stop</ButtonWithMargin>
 		</FormWrap>
 	);
 }

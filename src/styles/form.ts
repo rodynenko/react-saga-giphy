@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 export const FormWrap = styled.div`
 	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const FormGroup = styled.div`
