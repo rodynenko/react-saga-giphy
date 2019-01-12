@@ -24,7 +24,7 @@ const ranges:string[] = ['min', 'max'];
 // Iterate through the sizes and create a media template
 export const media = Object.keys(sizes).reduce((acc: MediaAccType, label: string) => {
 	const widths:string = ranges.reduce((acc: string[], range: string, index: number) => {
-		if (sizes[range][index]) {
+		if (sizes[label][index]) {
 			acc.push(`(${range}-width: ${sizes[label][index]}px)`);
 		}
 
