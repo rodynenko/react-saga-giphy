@@ -1,10 +1,7 @@
 import React from 'react';
+import { GIPHYImageType } from '../../types';
 
-export interface ListItemType {
-	url: string;
-}
-
-const ListItem: React.SFC<ListItemType> = (props) => {
+const ListItem: React.SFC<GIPHYImageType> = (props) => {
 	return (
 		<div />
 	);
