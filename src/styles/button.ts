@@ -5,14 +5,15 @@ export const Button = styled.button<{ isDisabled: boolean }>`
 	padding: 10px 15px;
 	color: #333;
 	border: 1px solid #333;
+	border-radius: 5px;
 	background-color: transparent;
 	-webkit-appearance: none;
 	cursor: pointer;
 	transition: color .2s ease-in-out, background-color .2s ease-in-out;
 	opacity: ${props => props.isDisabled ? 0.6 : 1};
-	pointer-events: ${props => props.isDisabled ? 'none' : undefined}
+	pointer-events: ${props => props.isDisabled ? 'none' : undefined};
 
-	&:hover {
+	:hover {
 		color: #fff;
 		background-color: #333;
 	}
