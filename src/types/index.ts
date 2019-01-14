@@ -6,6 +6,7 @@ interface GIPHYPropType {
 }
 
 export interface GIPHYImagesType {
+	"480w_still": GIPHYPropType;
 	downsized_small: GIPHYPropType;
 	original: GIPHYPropType;
 }

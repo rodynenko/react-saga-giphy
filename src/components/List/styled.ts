@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { media } from '../../styles/helpers';
 
 export const ListUl = styled.ul`
+	display: flex;
+	flex-wrap: wrap;
 	margin: 0 -15px;
 	padding: 0;
 	list-style: none;

@@ -11,7 +11,7 @@ class ListItem extends Component<GIPHYImageType, ListItemState> {
 		super(props);
 
 		this.state = {
-			image: props.images.downsized_small.url,
+			image: props.images['480w_still'].url,
 			isHighResLoad: false
 		};
 	}
