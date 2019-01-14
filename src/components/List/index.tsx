@@ -14,7 +14,11 @@ interface ListType {
 const List: React.SFC<ListType> = (props) => {
 	const { loading, items } = props;
 
-	if (loading) return <Loader />;
+	if (loading) return (
+		<ListContainer>
+			<Loader />
+		</ListContainer>
+	);
 	if (!items) return null;
 
 	return (
