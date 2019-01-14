@@ -11,9 +11,14 @@ export interface SearchType {
 	}
 };
 
-export const fetchGifs = (query: string) => ({
+export const fetchGifs = (query: string, cb: () => void) => ({
 	type: ActionTypes.FETCH_GIFS,
 	query,
+	cb
+});
+
+export const stopFetchGifs = () => ({
+	type: ActionTypes.FETCH_GIFS + StatusTypes.STOP
 });
 
 const initialState: SearchType = {
@@ -25,23 +30,21 @@ const initialState: SearchType = {
 type SearchStateType = SearchType | undefined;
 
 const actionHandlers: ActionHandlersType<SearchStateType> = {
-	[ActionTypes.FETCH_GIFS]: (state: SearchStateType = initialState, action: ActionType) => {
-		const { query = '' } = action;
-
+	[ActionTypes.FETCH_GIFS]: (state: SearchStateType = initialState) => {
 		return update(state, {
-			currentSearch: { $set: query },
 			isFetching: { $set: true },
 		});
 	},
 
 	[ActionTypes.FETCH_GIFS + StatusTypes.SUCCESS]: (state: SearchStateType = initialState, action: ActionType) => {
-		const { currentSearch } = state;
+		const { query = '' } = action;
 		const list = action.payload as GIPHYImageType[];
 
 		return update(state, {
 			results: { $merge: {
-				[currentSearch]: list,
+				[query]: list,
 			}},
+			currentSearch: { $set: query },
 			isFetching: { $set: false },
 		});
 	},
@@ -51,6 +54,12 @@ const actionHandlers: ActionHandlersType<SearchStateType> = {
 			isFetching: { $set: false },
 		});
 	},
+
+	[ActionTypes.FETCH_GIFS + StatusTypes.STOPPED]: (state: SearchStateType) => {
+		return update(state, {
+			isFetching: { $set: false },
+		});
+	}
 };
 
 export default createReducer(initialState, actionHandlers);

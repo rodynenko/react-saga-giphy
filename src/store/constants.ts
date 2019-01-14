@@ -9,6 +9,7 @@ export const StatusTypes = getEnum({
 	SUCCESS: null,
 	ERROR: null,
 	STOP: null,
+	STOPPED: null,
 });
 
 export const API_ROOT: string = `https://api.giphy.com/v1/gifs/search?api_key=${process.env.REACT_APP_API_KEY}&q=`;

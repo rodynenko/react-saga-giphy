@@ -8,13 +8,20 @@ import { FormWrap } from '../../styles/form';
 export interface Values {
 	search: string;
 }
+export interface DispatcherType {
+	stopFetchGifs: () => void;
+}
 
 const ButtonWithMargin = styled(Button)`
 	margin-left: 15px;
 `;
 
-const InnerForm: React.SFC<FormikProps<Values>> = (props) => {
-	const { isSubmitting } = props;
+const InnerForm: React.SFC<FormikProps<Values> & DispatcherType> = (props) => {
+	const { isSubmitting, stopFetchGifs } = props;
+
+	function handleCancelClick() {
+		stopFetchGifs();
+	}
 
 	return (
 		<FormWrap as={Form}>
@@ -24,7 +31,13 @@ const InnerForm: React.SFC<FormikProps<Values>> = (props) => {
 				component={InputField}
 			/>
 			<ButtonWithMargin isDisabled={isSubmitting} type="submit">Search</ButtonWithMargin>
-			<ButtonWithMargin isDisabled={!isSubmitting} type="button">Stop</ButtonWithMargin>
+			<ButtonWithMargin
+				isDisabled={!isSubmitting}
+				type="button"
+				onClick={handleCancelClick}
+			>
+				Cancel
+			</ButtonWithMargin>
 		</FormWrap>
 	);
 }
