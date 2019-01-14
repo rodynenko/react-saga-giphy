@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import InnerForm, { Values } from './InnerForm';
+import { connect } from 'react-redux';
 import { Formik, FormikActions, FormikProps } from 'formik';
+import InnerForm, { Values } from './InnerForm';
+import {fetchGifs} from '../../reducers/search';
 
-export class SearchForm extends Component<any, any> {
+interface SearchFormProps {
+	fetchGifs: (query: string) => void;
+}
+export class SearchForm extends Component<SearchFormProps, any> {
 	innerForm = (props: FormikProps<Values>) => <InnerForm {...props}/>;
 
 	handleSubmit = (values: Values, { setSubmitting }: FormikActions<Values> ) => {
-		console.log(values);
+		this.props.fetchGifs(values.search);
 	};
 
 	render() {
@@ -24,4 +29,6 @@ export class SearchForm extends Component<any, any> {
 	}
 }
 
-export default SearchForm;
+export default connect(null, {
+	fetchGifs
+})(SearchForm);

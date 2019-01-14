@@ -1,7 +1,7 @@
 import update from 'immutability-helper';
 import createReducer from '../utils/createReducer';
 import { ActionTypes, StatusTypes } from '../store/constants';
-import { GIPHYImageType, ActionHandlersType } from '../types';
+import { GIPHYImageType, ActionHandlersType, ActionType } from '../types';
 
 export interface SearchType {
 	isFetching: boolean;
@@ -10,6 +10,11 @@ export interface SearchType {
 		[key: string]: GIPHYImageType[]
 	}
 };
+
+export const fetchGifs = (query: string) => ({
+	type: ActionTypes.FETCH_GIFS,
+	query,
+});
 
 const initialState: SearchType = {
 	isFetching: false,
@@ -20,14 +25,23 @@ const initialState: SearchType = {
 type SearchStateType = SearchType | undefined;
 
 const actionHandlers: ActionHandlersType<SearchStateType> = {
-	[ActionTypes.FETCH_GIFS + StatusTypes.START]: (state: SearchStateType) => {
+	[ActionTypes.FETCH_GIFS]: (state: SearchStateType = initialState, action: ActionType) => {
+		const { query = '' } = action;
+
 		return update(state, {
+			currentSearch: { $set: query },
 			isFetching: { $set: true },
 		});
 	},
 
-	[ActionTypes.FETCH_GIFS + StatusTypes.SUCCESS]: (state: SearchStateType) => {
+	[ActionTypes.FETCH_GIFS + StatusTypes.SUCCESS]: (state: SearchStateType = initialState, action: ActionType) => {
+		const { currentSearch } = state;
+		const list = action.payload as GIPHYImageType[];
+
 		return update(state, {
+			results: { $merge: {
+				[currentSearch]: list,
+			}},
 			isFetching: { $set: false },
 		});
 	},
