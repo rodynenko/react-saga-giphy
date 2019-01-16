@@ -15,7 +15,7 @@ function* fetchGifs(action: ActionType) {
 	try {
 		const { resp } = yield race({
 			resp: call(api.get, url),
-			cancel: take(ActionTypes.FETCH_GIFS + StatusTypes.STOP)
+			cancel: take(ActionTypes.FETCH_GIFS + StatusTypes.CANCEL)
 		});
 
 		if (cb) cb();

@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Formik, FormikActions, FormikProps } from 'formik';
 import InnerForm, { Values } from './InnerForm';
-import { fetchGifs, stopFetchGifs } from '../../reducers/search';
+import { fetchGifs, cancelFetchGifs } from '../../actions/search';
 
 interface SearchFormProps {
 	fetchGifs: (query: string, cb: () => void) => void;
-	stopFetchGifs: () => void;
+	cancelFetchGifs: () => void;
 }
 export class SearchForm extends Component<SearchFormProps, any> {
 	innerForm = (props: FormikProps<Values>) => (
-		<InnerForm {...props} stopFetchGifs={this.props.stopFetchGifs} />
+		<InnerForm {...props} stopFetchGifs={this.props.cancelFetchGifs} />
 	);
 
 	handleSubmit = (values: Values, { setSubmitting }: FormikActions<Values> ) => {
@@ -39,5 +39,5 @@ export class SearchForm extends Component<SearchFormProps, any> {
 
 export default connect(null, {
 	fetchGifs,
-	stopFetchGifs
+	cancelFetchGifs
 })(SearchForm);

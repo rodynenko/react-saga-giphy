@@ -7,8 +7,8 @@ export const fetchGifs = (query: string, cb: () => void) => ({
 	cb
 });
 
-export const stopFetchGifs = () => ({
-	type: ActionTypes.FETCH_GIFS + StatusTypes.STOP
+export const cancelFetchGifs = () => ({
+	type: ActionTypes.FETCH_GIFS + StatusTypes.CANCEL
 });
 
 export const handleSuccessFetchGifs = (payload: GIPHYImageType[], query: string) => ({

@@ -8,7 +8,7 @@ export const StatusTypes = getEnum({
 	START: null,
 	SUCCESS: null,
 	ERROR: null,
-	STOP: null,
+	CANCEL: null,
 	STOPPED: null,
 });
 
