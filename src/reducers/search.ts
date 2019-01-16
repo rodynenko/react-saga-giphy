@@ -11,16 +11,6 @@ export interface SearchType {
 	}
 };
 
-export const fetchGifs = (query: string, cb: () => void) => ({
-	type: ActionTypes.FETCH_GIFS,
-	query,
-	cb
-});
-
-export const stopFetchGifs = () => ({
-	type: ActionTypes.FETCH_GIFS + StatusTypes.STOP
-});
-
 const initialState: SearchType = {
 	isFetching: false,
 	currentSearch: '',

@@ -2,6 +2,11 @@ import { call, put, takeEvery, take, race } from 'redux-saga/effects';
 import { ActionTypes, StatusTypes, API_ROOT } from '../store/constants';
 import { ActionType } from '../types';
 import api from '../utils/api';
+import {
+	handleSuccessFetchGifs,
+	handleErrorFetchGifs,
+	handleFetchGifsStop
+} from '../actions/search';
 
 function* fetchGifs(action: ActionType) {
 	const { query = '', cb }  = action;
@@ -16,17 +21,13 @@ function* fetchGifs(action: ActionType) {
 		if (cb) cb();
 
 		if (resp) {
-			yield put({
-				type: ActionTypes.FETCH_GIFS + StatusTypes.SUCCESS,
-				payload: resp.data.data,
-				query
-			});
+			yield put(handleSuccessFetchGifs(resp.data.data, query));
 		} else {
-			yield put({ type: ActionTypes.FETCH_GIFS + StatusTypes.STOPPED });
+			yield put(handleFetchGifsStop());
 		}
 
 	} catch(err) {
-		yield put({ type: ActionTypes.FETCH_GIFS + StatusTypes.ERROR, error: true, payload: err });
+		yield put(handleErrorFetchGifs(err));
 	}
 }
 
