@@ -23,7 +23,7 @@ export interface ActionType extends Action {
 	payload?: object | GIPHYImageType[];
 	error?: boolean;
 	query?: string;
-	cb?: () => void;
+	cb?: (data: any) => void;
 };
 
 export type ActionHandlersType<S> = {

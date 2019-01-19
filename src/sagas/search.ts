@@ -8,7 +8,7 @@ import {
 	handleFetchGifsStop
 } from '../actions/search';
 
-function* fetchGifs(action: ActionType) {
+export function* fetchGifs(action: ActionType) {
 	const { query = '', cb }  = action;
 	const url = API_ROOT + encodeURIComponent(query);
 
@@ -18,14 +18,11 @@ function* fetchGifs(action: ActionType) {
 			cancel: take(ActionTypes.FETCH_GIFS + StatusTypes.CANCEL)
 		});
 
-		if (cb) cb();
-
 		if (resp) {
 			yield put(handleSuccessFetchGifs(resp.data.data, query));
-		} else {
-			yield put(handleFetchGifsStop());
 		}
 
+		if (cb) cb(resp);
 	} catch(err) {
 		yield put(handleErrorFetchGifs(err));
 	}
