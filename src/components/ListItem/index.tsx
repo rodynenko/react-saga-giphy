@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import observer, { ObserverType } from '../../utils/observer';
+import lozad from 'lozad';
 import { GIPHYImageType } from '../../types';
 import { ListItemWrap } from './styled';
 
@@ -9,7 +9,7 @@ interface ListItemState {
 }
 class ListItem extends Component<GIPHYImageType, ListItemState> {
 	private node: HTMLDivElement | null;
-	private observerInstance: ObserverType | null;
+	private observer: lozad.Observer | null;
 	constructor(props: GIPHYImageType) {
 		super(props);
 
@@ -18,14 +18,14 @@ class ListItem extends Component<GIPHYImageType, ListItemState> {
 			isHighResLoad: false
 		};
 		this.node = null;
-		this.observerInstance = null;
+		this.observer = null;
 	}
 
 	componentDidMount() {
 		if (!this.node) return;
 
-		this.observerInstance = observer(this.node, {
-			trigger: ():void => {
+		this.observer = lozad(this.node, {
+			load: (): void => {
 				const img = new Image();
 				const newSrc = this.props.images.original.url;
 
@@ -38,14 +38,7 @@ class ListItem extends Component<GIPHYImageType, ListItemState> {
 				img.src = newSrc;
 			}
 		});
-
-		this.observerInstance.observe();
-	}
-
-	componentWillUnmount() {
-		if (this.observerInstance) {
-			this.observerInstance.unobserve();
-		}
+		this.observer.observe();
 	}
 
 	render() {
