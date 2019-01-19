@@ -7,6 +7,14 @@ Small React project with gifs search from [giphy.com](https://giphy.com/).
 * Formik (for forms)
 * Jest tests
 
+## Configuration
+
+To run in dev mode, you need to set `.env.local`:
+
+```env
+REACT_APP_API_KEY=<your giphy's api key>
+```
+
 ## Under hood
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
